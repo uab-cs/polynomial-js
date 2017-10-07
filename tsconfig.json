@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "allowJs": true
-  }
+    "allowJs": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
