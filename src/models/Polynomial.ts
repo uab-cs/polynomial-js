@@ -79,5 +79,21 @@ export default class Polynomial {
             }
         };
     }
-
+    equals(other: Polynomial){
+        if(this.size() !== other.size()) return false;
+        this.sortMonomials();
+        other.sortMonomials();
+        for(let i = 0; i < this.size(); i++){
+            let ours = this.getMonomial(i);
+            let theirs = other.getMonomial(i);
+            if(ours.coefficient !== theirs.coefficient) return false;
+            if(ours.degree !== theirs.degree) return false;
+        }
+        return true;
+    }
+    private sortMonomials(){
+        this.monomials.sort((a, b)=>{
+            return a.degree - b.degree;
+        });
+    }
 }

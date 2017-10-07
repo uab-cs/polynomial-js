@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import 'mocha';
-import * as parser from "../src/parser/poly-grammar";
+import * as parser from "../../src/parser/poly-grammar";
 import * as _ from "lodash";
 
 describe("PEG.js Parser", function(){

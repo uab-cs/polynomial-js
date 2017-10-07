@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import 'mocha';
-import parse from "../src/parser/parser";
-import ruleOfSigns from "../src/modules/descarte";
+import parse from "../../src/parser/parser";
+import ruleOfSigns from "../../src/modules/descarte";
 
 describe("Descarte's Rule of Signs", function(){
     it("Should evaluate positive and negative zeros", function(){

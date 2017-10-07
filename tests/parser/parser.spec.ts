@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import 'mocha';
-import parse from "../src/parser/parser";
+import parse from "../../src/parser/parser";
 
 describe("Application Parser", function(){
     it("Shouldn't Explode", function(){

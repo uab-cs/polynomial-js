@@ -5,13 +5,16 @@ import parse from "../src/parser/parser";
 describe("Polynomial Arithmetic", function(){
 
     it("Add", function(){
-        // (3x^2+4x-2) + (-7x^2-10x+17)
-        let lhs = parse("3x^2+4x-2");
-        let rhs = parse("-7x^2-10x+17");
+        let lhs = parse("3x^3 + 3x^2 - 4x + 5");
+        let rhs = parse("x^3 - 2x^2 + x-4");
         let result = lhs.add(rhs);
+        console.log("add: ", result);
     });
     it("Subtract", function(){
-
+        let lhs = parse("x^3 - 2x^2 + x-4");
+        let rhs = parse("x^3 - 2x^2 + x-4");
+        let result = lhs.subtract(rhs);
+        expect(result.size()).to.equal(0);
     });
     it("Multiply", function(){
 

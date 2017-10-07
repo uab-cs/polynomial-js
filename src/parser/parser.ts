@@ -3,6 +3,7 @@ import Monomial from "../models/Monomial";
 import Polynomial from "../models/Polynomial";
 
 export default function parse(exp: string){
+    exp = exp.replace(/\s/g,'');
     let output = pegParser.parse(exp);
 
     let monomials: Monomial[] = output.map((obj)=>{
