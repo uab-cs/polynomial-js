@@ -10,7 +10,10 @@ export default class Polynomial {
         this.monomials = monomials;
     }
 
-    /* getters */
+    /**
+     * READONLY
+     * ==========================
+     */
     getMonomial(ind): Monomial{
         if(this.monomials[ind])
             return this.monomials[ind];
@@ -28,7 +31,10 @@ export default class Polynomial {
         return Adapter.toLatex(this);
     }
 
-    /* arithmetic */
+    /**
+     * ARITHMETIC
+     * ==========================
+     */
     add(polynomial: Polynomial): Polynomial{
         return new Adapter(this, polynomial).add();
     }
@@ -52,6 +58,10 @@ export default class Polynomial {
         }))
     }
 
+    /**
+     * UTILITY
+     * ==========================
+     */
     getIterator(){
         let _self: Polynomial = this;
         let cursor: number = 0;
