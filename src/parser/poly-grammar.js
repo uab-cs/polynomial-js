@@ -152,9 +152,21 @@ function peg$parse(input, options) {
                   deg: deg
               }
           },
-      peg$c2 = function(co) { return co },
+      peg$c2 = function(co) {
+      	    return {
+                 co: co,
+                 sym: 'x',
+                 deg: 0
+              }
+      	},
       peg$c3 = "",
-      peg$c4 = function() { return 0 },
+      peg$c4 = function() {
+              return {
+                 co: 0,
+                 sym: 'x',
+                 deg: 0
+              }
+          },
       peg$c5 = function(sign, intgr) {
           	if(sign === "+") return intgr;
               if(sign === "-") return -intgr;

@@ -16,6 +16,7 @@
     "typescript": "^2.5.3"
   },
   "devDependencies": {
+    "pegjs": "^0.10.0",
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.43",
     "chai": "^4.1.2",

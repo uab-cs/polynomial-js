@@ -17,8 +17,20 @@ Monomial
     }
 
 Constant
-	= co:Coefficient { return co }
-    / "" { return 0 }
+	= co:Coefficient {
+	    return {
+           co: co,
+           sym: 'x',
+           deg: 0
+        }
+	}
+    / "" {
+        return {
+           co: 0,
+           sym: 'x',
+           deg: 0
+        }
+    }
 
 Coefficient
 	= sign:Sign intgr:Integer {
