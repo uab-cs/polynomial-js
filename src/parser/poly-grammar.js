@@ -168,6 +168,7 @@ function peg$parse(input, options) {
               }
           },
       peg$c5 = function(sign, intgr) {
+                	if(!intgr) intgr = 1;
           	if(sign === "+") return intgr;
               if(sign === "-") return -intgr;
           },
@@ -414,6 +415,9 @@ function peg$parse(input, options) {
     s1 = peg$parseSign();
     if (s1 !== peg$FAILED) {
       s2 = peg$parseInteger();
+      if (s2 === peg$FAILED) {
+        s2 = null;
+      }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
         s1 = peg$c5(s1, s2);

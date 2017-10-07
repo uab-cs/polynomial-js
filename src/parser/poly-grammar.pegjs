@@ -33,7 +33,8 @@ Constant
     }
 
 Coefficient
-	= sign:Sign intgr:Integer {
+	= sign:Sign intgr:Integer? {
+          	if(!intgr) intgr = 1;
     	if(sign === "+") return intgr;
         if(sign === "-") return -intgr;
     }

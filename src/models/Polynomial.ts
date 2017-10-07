@@ -46,6 +46,11 @@ export default class Polynomial {
             return total + (monomial.coefficient * ( Math.pow(variable, monomial.degree)));
         }, 0);
     }
+    negate(){
+        return new Polynomial(this.monomials.map((monomial)=>{
+            return monomial.negateVariable();
+        }))
+    }
 
     getIterator(){
         let _self: Polynomial = this;
