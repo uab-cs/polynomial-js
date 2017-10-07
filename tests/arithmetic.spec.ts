@@ -5,10 +5,12 @@ import parse from "../src/parser/parser";
 describe("Polynomial Arithmetic", function(){
 
     it("Add", function(){
+        // http://www.purplemath.com/modules/polyadd.htm
         let lhs = parse("3x^3 + 3x^2 - 4x + 5");
         let rhs = parse("x^3 - 2x^2 + x-4");
+        let expected = parse("4x^3 + 1x^2 - 3x + 1");
         let result = lhs.add(rhs);
-        console.log("add: ", result);
+        expect(result.equals(expected)).to.equal(true);
     });
     it("Subtract", function(){
         let lhs = parse("x^3 - 2x^2 + x-4");
@@ -17,7 +19,11 @@ describe("Polynomial Arithmetic", function(){
         expect(result.size()).to.equal(0);
     });
     it("Multiply", function(){
-
+        let lhs = parse("x + 3");
+        let rhs = parse("x + 2");
+        let expected = parse("x^2 + 5x + 6");
+        let result = lhs.multiply(rhs);
+        expect(result.equals(expected)).to.equal(true);
     });
     it("Divide", function(){
         let lhs = parse("3x^2+5x+2");

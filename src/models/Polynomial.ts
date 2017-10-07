@@ -25,6 +25,7 @@ export default class Polynomial {
         return _.last(this.monomials).coefficient;
     }
     getLeadingCoefficient(): number {
+        this.sortMonomials();
         return this.getMonomial(0).coefficient;
     }
     toLatex(): string {
