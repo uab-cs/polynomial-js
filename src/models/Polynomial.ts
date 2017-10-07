@@ -48,7 +48,7 @@ export default class Polynomial {
     }
     negate(){
         return new Polynomial(this.monomials.map((monomial)=>{
-            return monomial.negateVariable();
+            return monomial.negate();
         }))
     }
 

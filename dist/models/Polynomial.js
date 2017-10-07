@@ -36,6 +36,16 @@ var Polynomial = /** @class */ (function () {
     Polynomial.prototype.divide = function (polynomial) {
         return new Adapter_1["default"](this, polynomial).divide();
     };
+    Polynomial.prototype.evaluate = function (variable) {
+        return this.monomials.reduce(function (total, monomial) {
+            return total + (monomial.coefficient * (Math.pow(variable, monomial.degree)));
+        }, 0);
+    };
+    Polynomial.prototype.negate = function () {
+        return new Polynomial(this.monomials.map(function (monomial) {
+            return monomial.negate();
+        }));
+    };
     Polynomial.prototype.getIterator = function () {
         var _self = this;
         var cursor = 0;
