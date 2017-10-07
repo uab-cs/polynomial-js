@@ -1,5 +1,6 @@
 import Monomial from "./Monomial";
 import * as _ from "lodash";
+import Adapter from "./Adapter";
 
 export default class Polynomial {
 
@@ -9,6 +10,7 @@ export default class Polynomial {
         this.monomials = monomials;
     }
 
+    /* getters */
     getMonomial(ind): Monomial{
         if(this.monomials[ind])
             return this.monomials[ind];
@@ -21,6 +23,20 @@ export default class Polynomial {
     }
     getLeadingCoefficient(): number{
         return this.getMonomial(0).coefficient;
+    }
+
+    /* arithmetic */
+    add(polynomial: Polynomial): Polynomial{
+        return new Adapter(this, polynomial).add();
+    }
+    subtract(polynomial: Polynomial): Polynomial{
+        return new Adapter(this, polynomial).subtract();
+    }
+    multiply(polynomial: Polynomial): Polynomial{
+        return new Adapter(this, polynomial).multiply();
+    }
+    divide(polynomial: Polynomial): Polynomial{
+        return new Adapter(this, polynomial).divide();
     }
 
     getIterator(){
@@ -40,4 +56,5 @@ export default class Polynomial {
             }
         };
     }
+
 }
