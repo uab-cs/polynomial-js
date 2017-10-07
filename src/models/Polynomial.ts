@@ -21,13 +21,13 @@ export default class Polynomial {
     size(): number {
         return this.monomials.length;
     }
-    getConstant(){
+    getConstant(): number {
         return _.last(this.monomials).coefficient;
     }
-    getLeadingCoefficient(): number{
+    getLeadingCoefficient(): number {
         return this.getMonomial(0).coefficient;
     }
-    toLatex(){
+    toLatex(): string {
         return Adapter.toLatex(this);
     }
 
@@ -52,7 +52,7 @@ export default class Polynomial {
             return total + (monomial.coefficient * ( Math.pow(variable, monomial.degree)));
         }, 0);
     }
-    negate(){
+    negate(): Polynomial {
         return new Polynomial(this.monomials.map((monomial)=>{
             return monomial.negate();
         }))
