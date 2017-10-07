@@ -18,6 +18,10 @@ module.exports = [{
                 query: {
                     presets: ['es2015']
                 }
+            },
+            {
+                test: /.tsx?$/,
+                loader: "ts-loader"
             }
         ]
     },
