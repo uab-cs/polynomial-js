@@ -24,6 +24,9 @@ export default class Polynomial {
     getLeadingCoefficient(): number{
         return this.getMonomial(0).coefficient;
     }
+    toLatex(){
+        return Adapter.toLatex(this);
+    }
 
     /* arithmetic */
     add(polynomial: Polynomial): Polynomial{
@@ -37,6 +40,11 @@ export default class Polynomial {
     }
     divide(polynomial: Polynomial): Polynomial{
         return new Adapter(this, polynomial).divide();
+    }
+    evaluate(variable: number): number {
+        return this.monomials.reduce((total: number, monomial: Monomial)=>{
+            return total + (monomial.coefficient * ( Math.pow(variable, monomial.degree)));
+        }, 0);
     }
 
     getIterator(){

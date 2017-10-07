@@ -20,6 +20,9 @@ var Polynomial = /** @class */ (function () {
     Polynomial.prototype.getLeadingCoefficient = function () {
         return this.getMonomial(0).coefficient;
     };
+    Polynomial.prototype.toLatex = function () {
+        return Adapter_1["default"].toLatex(this);
+    };
     /* arithmetic */
     Polynomial.prototype.add = function (polynomial) {
         return new Adapter_1["default"](this, polynomial).add();

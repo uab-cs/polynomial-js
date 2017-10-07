@@ -28,6 +28,10 @@ export default class Adapter {
         return this.next(this.lhs.div(this.rhs));
     }
 
+    static toLatex(polynomial: Polynomial){
+        return Adapter.toPolyJS(polynomial).toLatex();
+    }
+
     next(polyJSOutput){
         return Adapter.fromPolyJS(polyJSOutput);
     }

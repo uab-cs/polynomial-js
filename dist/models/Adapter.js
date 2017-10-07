@@ -20,6 +20,9 @@ var Adapter = /** @class */ (function () {
     Adapter.prototype.divide = function () {
         return this.next(this.lhs.div(this.rhs));
     };
+    Adapter.toLatex = function (polynomial) {
+        return Adapter.toPolyJS(polynomial).toLatex();
+    };
     Adapter.prototype.next = function (polyJSOutput) {
         return Adapter.fromPolyJS(polyJSOutput);
     };

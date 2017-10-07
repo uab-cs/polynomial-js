@@ -31,4 +31,9 @@ describe("Polynomial Arithmetic", function(){
         let result = lhs.divide(rhs);
         console.log("divide", result);
     });
+    it("Evaluate", function(){
+        let poly = parse("3x^2-2x+1");
+        let result = poly.evaluate(2);
+        expect(result).to.equal(9);
+    })
 });
