@@ -1,29 +1,29 @@
 import Monomial from "./Monomial";
+import * as _ from "lodash";
 
 export default class Polynomial {
 
     monomials: Monomial[];
-    constant: number;
 
-    constructor(monomials: Monomial[], constant: number){
+    constructor(monomials: Monomial[]){
         this.monomials = monomials;
-        this.constant = constant;
     }
 
-    mono(ind): Monomial{
-        if(this.monomials[ind]) return this.monomials[ind];
+    getMonomial(ind): Monomial{
+        if(this.monomials[ind])
+            return this.monomials[ind];
     }
     size(): number {
         return this.monomials.length;
     }
-    cons(){
-        return this.constant;
+    getConstant(){
+        return _.last(this.monomials).coefficient;
     }
-    leadingCo(): number{
-        return this.mono(0).co();
+    getLeadingCoefficient(): number{
+        return this.getMonomial(0).coefficient;
     }
 
-    iterator(){
+    getIterator(){
         let _self: Polynomial = this;
         let cursor: number = 0;
         return {
