@@ -91,8 +91,8 @@ export default class Polynomial {
         }
         return true;
     }
-    private sortMonomials(){
-        this.monomials.sort((a, b)=>{
+    sortMonomials(){
+        this.monomials.sort((b, a)=>{
             return a.degree - b.degree;
         });
     }
