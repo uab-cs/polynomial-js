@@ -3,7 +3,7 @@ import 'mocha';
 import * as parser from "../../src/parser/poly-grammar";
 import * as _ from "lodash";
 
-describe("PEG.js Parser", function(){
+describe("PEG.js Grammar", function(){
     it("Shouldn't Explode", function(){
         let output;
         expect(function(){

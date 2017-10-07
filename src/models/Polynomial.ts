@@ -15,6 +15,7 @@ export default class Polynomial {
      * ==========================
      */
     getMonomial(ind): Monomial{
+        this.sortMonomials();
         if(this.monomials[ind])
             return this.monomials[ind];
     }
@@ -22,6 +23,7 @@ export default class Polynomial {
         return this.monomials.length;
     }
     getConstant(): number {
+        this.sortMonomials();
         return _.last(this.monomials).coefficient;
     }
     getLeadingCoefficient(): number {

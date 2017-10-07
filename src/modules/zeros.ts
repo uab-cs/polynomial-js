@@ -1,6 +1,6 @@
 import Polynomial from "../models/Polynomial";
 
-export default function rationalZeros(polynomial: Polynomial){
+export default function rationalZeros(polynomial: Polynomial) {
     let potential = potentialZeros(polynomial);
     let actual = actualZeros(potential, polynomial);
     return {
@@ -14,9 +14,9 @@ export function potentialZeros(polynomial: Polynomial) {
     let cons = factors(polynomial.getConstant());
     let leading = factors(polynomial.getLeadingCoefficient());
     let resultSet = new Set<number>();
-    cons.forEach((numCons)=>{
-        leading.forEach((numLead)=>{
-            let potZero = numCons/numLead;
+    cons.forEach((numCons) => {
+        leading.forEach((numLead) => {
+            let potZero = numCons / numLead;
             resultSet.add(potZero);
             resultSet.add(potZero * -1);
         });
@@ -24,28 +24,25 @@ export function potentialZeros(polynomial: Polynomial) {
     return resultSet;
 }
 
-export function actualZeros(potential: Set<number>, polynomial: Polynomial){
+export function actualZeros(potential: Set<number>, polynomial: Polynomial) {
     let actual = new Set<number>();
-    potential.forEach((number)=>{
+    potential.forEach((number) => {
         let res = polynomial.evaluate(number);
-        if(res === 0) actual.add(number);
+        if (res === 0) actual.add(number);
     });
     return actual;
 }
 
-function factors(n)
-{
-    var num_factors = [], i;
-
+function factors(n) {
+    let num_factors = [], i;
     for (i = 1; i <= Math.floor(Math.sqrt(n)); i += 1)
-        if (n % i === 0)
-        {
+        if (n % i === 0) {
             num_factors.push(i);
             if (n / i !== i)
                 num_factors.push(n / i);
         }
-    num_factors.sort(function(x, y)
-    {
-        return x - y;});  // numeric sort
+    num_factors.sort(function (x, y) {
+        return x - y;
+    });
     return num_factors;
 }

@@ -4,7 +4,7 @@ import parse from "../src/parser/parser";
 
 describe("Polynomial Models", function(){
 
-    it("Order", function(){
+    it("Should sort monomials by degree", function(){
         let polynomial = parse("4x + 7x^3 + 3x^2 + 5");
         polynomial.sortMonomials();
 
@@ -17,7 +17,7 @@ describe("Polynomial Models", function(){
         }
     });
 
-    it("Equivalence", function(){
+    it("Should compare two Polynomials for equivalence", function(){
         let lhs = parse("3x^3 + 3x^2 - 4x + 5");
         let rhs = parse("3x^3 + 3x^2 - 4x + 5");
         expect(lhs.equals(rhs)).to.equal(true);
@@ -28,5 +28,9 @@ describe("Polynomial Models", function(){
         let outOfOrder = parse("3x^2 + 3x^3 - 4x + 5");
         expect(lhs.equals(outOfOrder)).to.equal(true);
     });
+
+    it("Should output to LaTex", function(){
+        parse("3x^3 + 3x^2 - 4x + 5").toLatex();
+    })
 
 });

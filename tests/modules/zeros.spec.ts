@@ -6,7 +6,7 @@ import {potentialZeros, actualZeros} from "../../src/modules/zeros";
 import * as math from "mathjs";
 
 describe("Rational Zeros Test", function(){
-    it("Potential Zeros", function(){
+    it("Should apply 'rule of signs' to determine potential zeros", function(){
         // http://www.purplemath.com/modules/rtnlroot.htm
         let poly = parse("x^4 + 2x^3 - 7x^2 - 8x + 12");
         let potential = potentialZeros(poly);
@@ -16,7 +16,7 @@ describe("Rational Zeros Test", function(){
         })
     });
 
-    it("Actual Zeros", function(){
+    it("Should test potential zeros to find actual zeros", function(){
         // http://www.purplemath.com/modules/rtnlroot.htm
         let poly = parse("x^4 + 2x^3 - 7x^2 - 8x + 12");
         let potential = potentialZeros(poly);
@@ -28,7 +28,7 @@ describe("Rational Zeros Test", function(){
         });
     });
 
-    it("Rational Zeros", function(){
+    /*it("Should apply rule of signs to determine potential zeros", function(){
         // http://www.sparknotes.com/math/algebra2/polynomials/section4.rhtml
         let poly = parse("x^3 - 9x + 2x^4 - 19x^2 +9");
         let output = rationalZeros(poly);
@@ -40,7 +40,7 @@ describe("Rational Zeros Test", function(){
         output.actual_zeros.forEach((number) => {
             act.push( math.format(math.fraction(number)));
         });
-        // console.log(pot.join(" , "));
-        // console.log(act.join(" , "));
-    });
+        console.log(pot.join(" , "));
+        console.log(act.join(" , "));
+    });*/
 });

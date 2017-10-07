@@ -26,11 +26,13 @@ describe("Polynomial Arithmetic", function(){
         expect(result.equals(expected)).to.equal(true);
     });
     it("Divide", function(){
-        let lhs = parse("3x^2+5x+2");
-        let rhs = parse("2x+1");
-        let result = lhs.divide(rhs);
+        let num = parse("x^2 - 9x - 10");
+        let den = parse("x + 1");
+        let expected = parse("x - 10");
+        let result = num.divide(den);
+        expect(result.equals(expected)).to.be.true;
     });
-    it("Evaluate", function(){
+    it("Evaluate a variable", function(){
         let poly = parse("3x^2-2x+1");
         let result = poly.evaluate(2);
         expect(result).to.equal(9);
