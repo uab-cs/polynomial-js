@@ -6,8 +6,12 @@ var Polynomial = /** @class */ (function () {
     function Polynomial(monomials) {
         this.monomials = monomials;
     }
-    /* getters */
+    /**
+     * READONLY
+     * ==========================
+     */
     Polynomial.prototype.getMonomial = function (ind) {
+        this.sortMonomials();
         if (this.monomials[ind])
             return this.monomials[ind];
     };
@@ -15,15 +19,20 @@ var Polynomial = /** @class */ (function () {
         return this.monomials.length;
     };
     Polynomial.prototype.getConstant = function () {
+        this.sortMonomials();
         return _.last(this.monomials).coefficient;
     };
     Polynomial.prototype.getLeadingCoefficient = function () {
+        this.sortMonomials();
         return this.getMonomial(0).coefficient;
     };
     Polynomial.prototype.toLatex = function () {
         return Adapter_1["default"].toLatex(this);
     };
-    /* arithmetic */
+    /**
+     * ARITHMETIC
+     * ==========================
+     */
     Polynomial.prototype.add = function (polynomial) {
         return new Adapter_1["default"](this, polynomial).add();
     };
@@ -46,6 +55,10 @@ var Polynomial = /** @class */ (function () {
             return monomial.negate();
         }));
     };
+    /**
+     * UTILITY
+     * ==========================
+     */
     Polynomial.prototype.getIterator = function () {
         var _self = this;
         var cursor = 0;
@@ -62,6 +75,26 @@ var Polynomial = /** @class */ (function () {
                 return _self.monomials[cursor];
             }
         };
+    };
+    Polynomial.prototype.equals = function (other) {
+        if (this.size() !== other.size())
+            return false;
+        this.sortMonomials();
+        other.sortMonomials();
+        for (var i = 0; i < this.size(); i++) {
+            var ours = this.getMonomial(i);
+            var theirs = other.getMonomial(i);
+            if (ours.coefficient !== theirs.coefficient)
+                return false;
+            if (ours.degree !== theirs.degree)
+                return false;
+        }
+        return true;
+    };
+    Polynomial.prototype.sortMonomials = function () {
+        this.monomials.sort(function (b, a) {
+            return a.degree - b.degree;
+        });
     };
     return Polynomial;
 }());
