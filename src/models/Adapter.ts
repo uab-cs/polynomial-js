@@ -41,7 +41,8 @@ export default class Adapter {
         polynomial.monomials.forEach((monomial) => {
             data[monomial.degree+""] = monomial.coefficient
         });
-        return new PolyJS(data);
+        let context: any = PolyJS;
+        return new context(data);
     }
     static fromPolyJS(polynomial): Polynomial {
         let _monos = polynomial.coeff;
