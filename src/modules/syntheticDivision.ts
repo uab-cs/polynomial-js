@@ -23,9 +23,10 @@ export default function syntheticDivide(polynomial: Polynomial, root: number){
 
     let remainder = _.last(bottomBar);
     let monomials: Monomial[] = [];
-    for(let i = bottomBar.length-2; i >= 0; i--){
+    for(let i = bottomBar.length-2,
+          deg = 0; i >= 0; i--, deg++){
         if(bottomBar[i] === 0) continue;
-        monomials.push(new Monomial(bottomBar[i], i));
+        monomials.push(new Monomial(bottomBar[i], deg));
     }
     let result = new Polynomial(monomials);
 
