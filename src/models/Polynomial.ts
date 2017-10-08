@@ -26,6 +26,10 @@ export default class Polynomial {
         this.sortMonomials();
         return _.last(this.monomials).coefficient;
     }
+    highestDegree(): number {
+        this.sortMonomials();
+        return this.monomials[0].degree;
+    }
     getLeadingCoefficient(): number {
         this.sortMonomials();
         return this.getMonomial(0).coefficient;
@@ -96,6 +100,11 @@ export default class Polynomial {
     }
     sortMonomials(){
         this.monomials.sort((b, a)=>{
+            return a.degree - b.degree;
+        });
+    }
+    sortMonomialsAsc(){
+        this.monomials.sort((a, b)=>{
             return a.degree - b.degree;
         });
     }
