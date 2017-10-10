@@ -1,8 +1,8 @@
 {
   "name": "polymath",
   "version": "1.0.0",
-  "description": "UAB Software Project",
-  "main": "dist/reducejs.js",
+  "description": "Advanced library for working with polynomials",
+  "main": "lib-esm/main.js",
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/*.spec.ts",
     "clean": "rm -rf lib lib-esm",
