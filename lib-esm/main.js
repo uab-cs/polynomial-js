@@ -1,5 +1,7 @@
 import parse from "./parser/parser";
-export var parser = {
-    parse: parse
-};
+import ruleOfSigns from "./modules/descarte";
+import reduce from "./modules/reduce";
+import syntheticDivide from "./modules/syntheticDivision";
+import rationalZeroTest from "./modules/zeros";
+export { parse, reduce, ruleOfSigns, syntheticDivide, rationalZeroTest };
 //# sourceMappingURL=main.js.map
