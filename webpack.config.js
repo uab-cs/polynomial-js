@@ -1,15 +1,23 @@
+const libraryName = "polymath";
+const libraryFileName = libraryName + ".js";
+
 module.exports = {
-    resolve: { extensions: ['.js', '.ts', '.tsx'] },
-    module: {
-        loaders: [
-            { test: /\.tsx?$/, loader: 'ts-loader' },
-        ]
+    entry: {
+        "polymath": './src/main.ts'
     },
-    entry: './src/modules/reduce.ts',
+    resolve: { extensions: ['.js', '.ts'] },
+    module: {
+        loaders: [{
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
+            exclude: /node_modules/
+        }]
+    },
     output: {
-        path: __dirname + '/dist',
-        filename: 'reduce.js',
+        path: __dirname + '/bundles',
+        filename: libraryFileName,
         libraryTarget: "umd",
-        library: 'mylib'
+        library: libraryName,
+        umdNamedDefine: true
     }
 };
