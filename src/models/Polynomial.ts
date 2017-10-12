@@ -14,10 +14,18 @@ export default class Polynomial {
      * READONLY
      * ==========================
      */
-    getMonomial(ind): Monomial{
+    getMonomial(ind: number): Monomial{
         this.sortMonomials();
         if(this.monomials[ind])
             return this.monomials[ind];
+    }
+    getMonomialByDegree(deg: number): Monomial{
+        let result = null;
+        this.monomials.forEach((monomial)=>{
+            if(monomial.degree === deg)
+                result = monomial;
+        });
+        return result;
     }
     size(): number {
         return this.monomials.length;

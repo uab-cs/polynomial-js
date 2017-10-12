@@ -1,6 +1,10 @@
 import Polynomial from "../models/Polynomial";
 import ruleOfSigns from "./descarte";
 import rationalZeros from "./zeros";
+import syntheticDivide from "./syntheticDivision";
+import quadraticFormula from "./quadraticFormula";
+import * as math from "mathjs";
+import Fraction = mathjs.Fraction;
 
 /*
 
@@ -23,23 +27,81 @@ import rationalZeros from "./zeros";
     7.  If this was an equation to solve, **write down the roots**. If it was a polynomial to factor, **write it in factored form**, including any constant factors you took out in step 1.
 
 */
-export default function reduce(polynomial: Polynomial) {
-    let steps = [];
+export default function reduce(polynomial: Polynomial, options = { quadraticFormula: false }): { steps: object[], roots: Fraction[] } {
+    let steps: object[] = [];
+    let roots: Fraction[] = [];
 
-    let stepOne = {
+    steps.push({
         "module": "descarte",
         "title": "Rule of Signs",
         "desc": "Apply Descarte's 'Rule of Signs' so we know how many positive and negative zeros to expect",
         "data": ruleOfSigns(polynomial)
-    };
+    });
 
-    let stepTwo = {
-        "module": "zeros",
-        "title": "Rational Zeros Test",
-        "data": rationalZeros(polynomial)
-    };
+    let loopUntil = (options.quadraticFormula)? 2 : 1;
+    let curr: Polynomial = polynomial;
+    while(curr.highestDegree() > loopUntil){
 
-    steps.push(stepOne, stepTwo);
+        let zeros = rationalZeros(curr);
+        if(zeros.actual_zeros.length === 0){
+            steps.push({
+                "module": "no_zeros",
+                "title": "No Zeros Found!"
+            });
+            break;
+        }
 
-    return steps;
+        let nextZero = zeros.actual_zeros[0];
+        // POTENTIAL LOSS OF PRECISION - HAVE SOMEONE VERIFY THIS
+        let divisor = math.number(nextZero as number) as number;
+        let division = syntheticDivide(curr, divisor);
+
+        let result = division.polynomial;
+        if(result.highestDegree() >= curr.highestDegree()){
+            steps.push({
+                "module": "no_divide",
+                "title": "Could not divide polynomial!",
+                "data": division
+            });
+            break;
+        }
+        curr = division.polynomial;
+
+        steps.push({
+            "module": "zeros",
+            "title": "Rational Zeros Test",
+            "data": zeros
+        });
+        steps.push({
+            "module": "synthetic_division",
+            "title": "Synthetic Division",
+            "data": division
+        });
+        roots.push(nextZero);
+    }
+
+
+    if(options.quadraticFormula){
+        if(polynomial.highestDegree() >= 2){
+            return {steps, roots};
+        }
+        let quadratic = quadraticFormula(curr);
+
+        steps.push({
+            "module": "quadraticFormula",
+            "title": "Quadratic Formula",
+            "data": quadratic
+        });
+
+        steps.push({
+            "module": "final",
+            "title": "Result",
+            "data": curr
+        });
+
+        roots.push(math.fraction(quadratic.plus));
+        roots.push(math.fraction(quadratic.minus));
+    }
+
+    return { steps, roots };
 }
